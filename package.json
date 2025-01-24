@@ -1,0 +1,36 @@
+{
+  "private": true,
+  "homepage": "https://arenavs.com",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "export": "next export"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "^1.8.6",
+    "@emotion/react": "^11.8.2",
+    "@emotion/styled": "^11.8.1",
+    "@fontsource/nunito": "^4.5.4",
+    "@react-spring/web": "^9.4.4",
+    "@visx/gradient": "^2.1.0",
+    "@visx/group": "^2.1.0",
+    "@visx/mock-data": "^2.1.2",
+    "@visx/scale": "^2.2.2",
+    "@visx/shape": "^2.4.0",
+    "focus-visible": "^5.2.0",
+    "framer-motion": "^6.2.8",
+    "next": "latest",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-icons": "^4.3.1",
+    "react-in-viewport": "^1.0.0-alpha.20",
+    "react-vertical-timeline-component": "^3.5.2",
+    "swiper": "^8.0.7"
+  },
+  "devDependencies": {
+    "eslint": "8.10.0",
+    "eslint-config-next": "12.1.0"
+  }
+}
