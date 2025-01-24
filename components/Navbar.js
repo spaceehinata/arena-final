@@ -12,11 +12,7 @@ const menu = {
   about: "About us",
   design: "Design concept",
   roadmap: "Roadmap",
-  tokenomics: "Tokenomics",
-  team: "Our team",
   partners: "Partners",
-  whitepaper: "Whitepaper",
-  deck: "Arena master deck",
 };
 export default function Navbar() {
   const { width } = useWindowSize();

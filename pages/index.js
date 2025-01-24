@@ -12,9 +12,7 @@ import Roadmap from "../components/Roadmap";
 import theme from "../theme.conf";
 import { ColorModeScript } from "@chakra-ui/react";
 import Main from "../components/Main";
-import Tokenomics from "../components/Tokenomics";
-import Team from "../components/Team";
-import Advisors from "../components/Advisors";
+
 import Partners from "../components/Partners";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
@@ -206,10 +204,8 @@ export default function Home() {
 
         <Design designRef={designRef} />
         <Roadmap roadmapRef={roadmapRef} />
-        <Tokenomics tokenomicsRef={tokenomicsRef} />
-        <Team teamRef={teamRef} />
+
         <Partners partnersRef={partnersRef} />
-        <Advisors />
         <Contact />
         <Footer />
       </Main>

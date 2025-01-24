@@ -5,15 +5,45 @@ import {
   Text,
   Textarea,
   useColorModeValue,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import Container from "./Container";
 
 export default function Contact() {
   const color = useColorModeValue("#05121B", "#FFF");
-
   const colorReverse = useColorModeValue("#FFF", "#05121B");
   const colorContact = useColorModeValue("#0A142F", "#0A142F");
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const [errors, setErrors] = useState({});
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!name) newErrors.name = "Name is required.";
+    if (!email) newErrors.email = "Email is required.";
+    else if (!/\S+@\S+\.\S+/.test(email)) newErrors.email = "Email is invalid.";
+    if (!message) newErrors.message = "Message is required.";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (validateForm()) {
+      // Form submission logic here
+      console.log("Form submitted:", { name, email, message });
+    }
+  };
+
   return (
     <Container py="3em">
       <Box
@@ -41,6 +71,8 @@ export default function Contact() {
           </Text>
         </Box>
         <Box
+          as="form"
+          onSubmit={handleSubmit}
           position="relative"
           background={color}
           borderRadius={["1.25em", "2em"]}
@@ -62,32 +94,60 @@ export default function Contact() {
           >
             Get in Touch
           </Text>
-          <Input
-            mt="2.5em"
-            _placeholder={{ color: colorReverse }}
-            border={`1.5px solid ${colorReverse} !important`}
-            placeholder="Enter Your Name"
-            p="1.5em 1em"
-          ></Input>
-          <Input
-            mt="1em"
-            _placeholder={{ color: colorReverse }}
-            border={`1.5px solid ${colorReverse} !important`}
-            placeholder="Enter Your Email"
-            p="1.5em 1em"
-          ></Input>
-          <Textarea
-            mt="1em"
-            _placeholder={{ color: colorReverse }}
-            border={`1.5px solid ${colorReverse} !important`}
-            placeholder="Enter Your Email"
-            p="1.5em 1em"
-          ></Textarea>
+
+          <FormControl isInvalid={errors.name} mt="2.5em">
+            <FormLabel color={colorReverse}>Name</FormLabel>
+            <Input
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              _placeholder={{ color: colorReverse }}
+              border={`1.5px solid ${colorReverse} !important`}
+              placeholder="Enter Your Name"
+              p="1.5em 1em"
+            />
+            <FormErrorMessage>{errors.name}</FormErrorMessage>
+          </FormControl>
+
+          <FormControl isInvalid={errors.email} mt="1em">
+            <FormLabel color={colorReverse}>Email</FormLabel>
+            <Input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              _placeholder={{ color: colorReverse }}
+              border={`1.5px solid ${colorReverse} !important`}
+              placeholder="Enter Your Email"
+              p="1.5em 1em"
+            />
+            <FormErrorMessage>{errors.email}</FormErrorMessage>
+          </FormControl>
+
+          <FormControl isInvalid={errors.message} mt="1em">
+            <FormLabel color={colorReverse}>Message</FormLabel>
+            <Textarea
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              _placeholder={{ color: colorReverse }}
+              border={`1.5px solid ${colorReverse} !important`}
+              placeholder="Enter Your Message"
+              p="1.5em 1em"
+            />
+            <FormErrorMessage>{errors.message}</FormErrorMessage>
+          </FormControl>
+
           <Button
+            type="submit"
             bg="#C45260"
             mt="2.5em"
             width={["100%", "auto"]}
             color={color}
+            _hover={{
+              backgroundColor: "#F39C97",
+              transform: "scale(1.05)",
+            }}
+            _active={{
+              backgroundColor: "#C45260",
+              transform: "scale(0.95)",
+            }}
           >
             Get in touch
           </Button>
